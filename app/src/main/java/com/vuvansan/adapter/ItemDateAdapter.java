@@ -1,0 +1,89 @@
+package com.vuvansan.adapter;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.vuvansan.R;
+import com.vuvansan.model.ItemData;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+public class ItemDateAdapter extends RecyclerView.Adapter {
+    private Activity activity;
+    private List<ItemData> itemDataList;
+
+    public ItemDateAdapter(Activity activity, List<ItemData> itemDataList) {
+        this.activity = activity;
+        this.itemDataList = itemDataList;
+    }
+    public void reLoadData(List<ItemData> list){
+        this.itemDataList=list;
+        this.notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View dataViewHolder=activity.getLayoutInflater().inflate(R.layout.one_more_time,parent,false);
+        ItemDataHolder holder=new ItemDataHolder(dataViewHolder);
+
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+
+
+        ItemDataHolder dataHolder= (ItemDataHolder) holder;
+        ItemData data=itemDataList.get(position);
+        dataHolder.tvTime.setText(convertTime(data.getDataTime()));
+        dataHolder.tvC.setText( data.getTemperature().getValue());
+        int weatherIcon=data.getWeatherIcon();
+        String urlIcon="https://developer.accuweather.com/sites/default/files/"+weatherIcon+"-s.png";
+        Glide.with(activity).load(urlIcon).into(dataHolder.ivIcon);
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return itemDataList.size();
+    }
+    public  class ItemDataHolder extends RecyclerView.ViewHolder {
+
+        TextView tvTime,tvC;
+        ImageView ivIcon;
+        public ItemDataHolder(@NonNull View itemView) {
+            super(itemView);
+            tvTime=itemView.findViewById(R.id.tvTime);
+            tvC=itemView.findViewById(R.id.tvC);
+            ivIcon=tvTime.findViewById(R.id.ivIcon);
+
+        }
+    }
+
+    public String convertTime(String inputTime) {
+        SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        Date date = null;
+        try {
+            date = inFormat.parse(inputTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat outFormat = new SimpleDateFormat("ha");
+        String goal = outFormat.format(date);
+        return goal;
+    }
+
+}
