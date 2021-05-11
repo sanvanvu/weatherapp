@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     response.code();
                     tvstatusNow.setText(list.get(0).getIconPhrase());
                     int Cnow= (int) list.get(0).getTemperature().getValue();
-                    tvCnow.setText((Cnow+""));
+                    tvCnow.setText((Cnow+"°"));
 
                 }
             }

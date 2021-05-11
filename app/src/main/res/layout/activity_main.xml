@@ -27,16 +27,16 @@
         android:textColor="@color/white"
         android:layout_gravity="center"
         android:id="@+id/tvstatusNow"
+        android:layout_marginBottom="20sp"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="27"
-        android:textSize="100sp"
+        android:textSize="90sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_margin="20sp"
         android:id="@+id/tvCnow"
         />
 
