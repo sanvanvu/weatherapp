@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vuvansan.adapter.ItemDateAdapter;
@@ -24,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewMain;
+    TextView tvCnow,tvstatusNow;
 
     List<ItemData> list=new ArrayList<>();
     ItemDateAdapter adapter;
@@ -38,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain=findViewById(R.id.rvMain);
         recyclerViewMain.setLayoutManager(layoutManager);
         recyclerViewMain.setAdapter(adapter);
-
+        tvCnow=findViewById(R.id.tvCnow);
+        tvstatusNow=findViewById(R.id.tvstatusNow);
 
     }
     public void getdata(){
@@ -54,12 +57,17 @@ public class MainActivity extends AppCompatActivity {
                 if(response.body()!=null){
                     list=response.body();
                     adapter.reLoadData(list);
+                    response.code();
+                    tvstatusNow.setText(list.get(0).getIconPhrase());
+                    int Cnow= (int) list.get(0).getTemperature().getValue();
+                    tvCnow.setText((Cnow+""));
 
                 }
             }
 
             @Override
             public void onFailure(Call<List<ItemData>> call, Throwable t) {
+
 
                 Toast.makeText(MainActivity.this,"Fail",Toast.LENGTH_LONG).show();
             }

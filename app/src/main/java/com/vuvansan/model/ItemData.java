@@ -1,9 +1,12 @@
 package com.vuvansan.model;
 
+import java.lang.reflect.Array;
+
 public class ItemData {
-    private  String DataTime;
-    private int EpochDataTime;
+    private String DateTime;
+    private int EpochDateTime;
     private int WeatherIcon;
+
     private String IconPhrase;
     private Boolean HasPrecipitation,IsDaylight;
     private Temperature Temperature;
@@ -11,20 +14,21 @@ public class ItemData {
     private String MobileLink;
     private  String Link;
 
-    public String getDataTime() {
-        return DataTime;
+    public String getDateTime() {
+        return DateTime;
     }
 
-    public void setDataTime(String dataTime) {
-        DataTime = dataTime;
+    public void setDateTime(String dateTime) {
+        DateTime = dateTime;
     }
 
-    public int getEpochDataTime() {
-        return EpochDataTime;
+
+    public int getEpochDateTime() {
+        return EpochDateTime;
     }
 
-    public void setEpochDataTime(int epochDataTime) {
-        EpochDataTime = epochDataTime;
+    public void setEpochDateTime(int epochDateTime) {
+        EpochDateTime = epochDateTime;
     }
 
     public int getWeatherIcon() {
@@ -38,6 +42,7 @@ public class ItemData {
     public String getIconPhrase() {
         return IconPhrase;
     }
+
 
     public void setIconPhrase(String iconPhrase) {
         IconPhrase = iconPhrase;
@@ -54,6 +59,7 @@ public class ItemData {
     public Boolean getDaylight() {
         return IsDaylight;
     }
+
 
     public void setDaylight(Boolean daylight) {
         IsDaylight = daylight;

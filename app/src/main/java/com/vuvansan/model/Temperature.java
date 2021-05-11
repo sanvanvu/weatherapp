@@ -1,14 +1,15 @@
 package com.vuvansan.model;
 
 public class Temperature {
-    private int Value;
+    private double Value;
     private  String Unit;
+    private  int UnitType;
 
-    public int getValue() {
+    public double getValue() {
         return Value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         Value = value;
     }
 
@@ -28,5 +29,5 @@ public class Temperature {
         UnitType = unitType;
     }
 
-    private  int UnitType;
+
 }

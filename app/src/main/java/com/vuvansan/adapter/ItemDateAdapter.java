@@ -47,11 +47,18 @@ public class ItemDateAdapter extends RecyclerView.Adapter {
 
         ItemDataHolder dataHolder= (ItemDataHolder) holder;
         ItemData data=itemDataList.get(position);
-        dataHolder.tvTime.setText(convertTime(data.getDataTime()));
-        dataHolder.tvC.setText( data.getTemperature().getValue());
+        dataHolder.tvTime.setText(convertTime(data.getDateTime()));
+
+        dataHolder.tvC.setText(String.valueOf(data.getTemperature().getValue()));
         int weatherIcon=data.getWeatherIcon();
-        String urlIcon="https://developer.accuweather.com/sites/default/files/"+weatherIcon+"-s.png";
-        Glide.with(activity).load(urlIcon).into(dataHolder.ivIcon);
+        if (weatherIcon<10){
+            String urlicon="https://developer.accuweather.com/sites/default/files/0"+weatherIcon+"-s.png";
+            Glide.with(activity).load(urlicon).into(dataHolder.ivIcon);
+        }
+        if(weatherIcon>=10){
+            String urlicon="https://developer.accuweather.com/sites/default/files/"+weatherIcon+"-s.png";
+            Glide.with(activity).load(urlicon).into(dataHolder.ivIcon);
+        }
 
 
     }
@@ -68,7 +75,7 @@ public class ItemDateAdapter extends RecyclerView.Adapter {
             super(itemView);
             tvTime=itemView.findViewById(R.id.tvTime);
             tvC=itemView.findViewById(R.id.tvC);
-            ivIcon=tvTime.findViewById(R.id.ivIcon);
+            ivIcon=itemView.findViewById(R.id.ivIcon);
 
         }
     }

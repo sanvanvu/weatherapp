@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface APImanager {
 
-public static String DOMAIN="http://dataservice.accuweather.com/forecasts/";
-@GET("v1/hourly/12hour/353412?apikey=xPSRhXsZ1ApXEjCUhHWKKsHRNjBMOAxt&language=vi-vn&metric=true")
+public static String DOMAIN="http://dataservice.accuweather.com/";
+@GET("forecasts/v1/hourly/12hour/353412?apikey=n7aDTBlsTgPp343cPLOUAfxs42TGDjWB&language=vi-vn&metric=true")
 Call<List<ItemData>> getdata();
 }
